@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+spec:
+  containers:
+    - name: ubn-container
+      image: ubuntu
+      command: ["/bin/bash", "-c", "while true; do echo hello from ubn-container; sleep 5; done;"]
