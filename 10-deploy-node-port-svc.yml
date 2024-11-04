@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      module: signup
+  template:
+    metadata:
+      name: httpd-templ
+      labels:
+        module: signup
+    spec:
+      containers:
+        - name: httpdctn
+          image: httpd
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-port-serv
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30111
+  selector:
+    module: signup
+  type: NodePort
