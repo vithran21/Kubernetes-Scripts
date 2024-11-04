@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: sample-rs
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+      - key: module
+        operator: In
+        values:
+          - signup
+          - login
+      - key: env
+        operator: NotIn
+        values:
+          - dev
+  template:
+    metadata:
+      name: ubn-templ
+      labels:
+        module: signup
+    spec:
+      containers:
+        - name: ubnctn
+          image: ubuntu
+          command: ["/bin/bash","-c","while true;do echo from rs ubn container;sleep 5;done"]
