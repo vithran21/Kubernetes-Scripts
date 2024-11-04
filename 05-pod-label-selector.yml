@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  labels:
+    team: java-dev
+    dept: dev
+spec:
+  containers:
+    - name: webapp
+      image: httpd
+      ports:
+        - containerPort: 80
